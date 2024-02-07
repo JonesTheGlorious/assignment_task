@@ -1,5 +1,5 @@
 import pytest
-from  import parse_python_file, identify_relationships, visualize_relationships
+from src.main import parse_python_file, identify_relationships, visualize_relationships
 
 @pytest.fixture
 def test_parse_python_file(example_python_code):

@@ -4,6 +4,7 @@ import re
 import os
 import networkx as nx
 import matplotlib.pyplot as plt
+from tests.test_scripts import visualize_relationships
 
 def parse_python_file(file_path, naming_convention):
     try:
