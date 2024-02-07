@@ -248,6 +248,3 @@ def co2_emissions_tier3_(ef_i, m_i, f_i, m_d, c_d, f_d, ef_d, m_k, x_k, ef_k):
         (ef_i * m_i * f_i) - (m_d * c_d * (1 - f_d) * ef_d) + (m_k * x_k * ef_k)
     )
     return co2_emissions
-
-def func():
-    return 1
