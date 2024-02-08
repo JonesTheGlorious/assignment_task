@@ -6,7 +6,7 @@ from visualization import visualize_relationships
 
 def main():
     parser = argparse.ArgumentParser(description="Visualize relationships between functions in a Python file.")
-    parser.add_argument("file_path",nargs='?', default=os.path.join(os.path.abspath(os.getcwd()), "resources/elementary.py"), help="Path to the Python file")
+    parser.add_argument("file_path", nargs='?', default=os.path.join(os.path.abspath(os.getcwd()), "resources/elementary.py"), help="Path to the Python file")
     parser.add_argument("--naming-convention", default="_", help="Naming convention pattern (default: _)")
 
     args = parser.parse_args()
@@ -16,7 +16,7 @@ def main():
         relationships = identify_relationships(extracted_functions)
         output_file = "function_relationships_graph.png"
         visualize_relationships(relationships, output_file)
-        print("Graph visualization saved as 'function_relationships_graph.png'.")
+        print("Graph visualization saved as " + output_file)
     except Exception as e:
         print(f"Error: {e}")
     
