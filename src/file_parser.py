@@ -15,7 +15,7 @@ def parse_python_file(file_path, naming_convention):
                 function_name = node.name
                 # Split function name based on naming convention
                 split_function_name = re.split(naming_convention, function_name)
-                if len(split_function_name) == 1 or (len(split_function_name) > 1 and any(split_function_name)):
+                if len(split_function_name) > 1:
                     parameters = [arg.arg for arg in node.args.args]
                     returns = []
                     for statement in node.body:

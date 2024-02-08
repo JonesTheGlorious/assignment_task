@@ -17,7 +17,7 @@ def visualize_relationships(relationships, output_file):
 
         # Visualize the graph
         plt.figure(figsize=(10, 6))
-        pos = nx.spring_layout(G)  # Layout algorithm
+        pos = nx.spring_layout(G, k=0.4, iterations=25)  # Layout algorithm
         nx.draw(G, pos, with_labels=True, node_size=2000, node_color="skyblue", font_size=10, font_weight="bold")
         plt.title("Function Relationships Graph")
         plt.savefig(output_file)  # Save the plot as a PNG file
