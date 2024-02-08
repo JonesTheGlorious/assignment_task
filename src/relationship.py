@@ -13,10 +13,10 @@ def identify_relationships(functions):
     """
     try:
         relationships = {}
-        
+        func_list = []
         for name, parameters, returns in functions:
             relationships[name] = {'parameters': set(parameters), 'returns': set(returns)}
-
+            func_list.append(name)
         for name, info in relationships.items():
             for compare_func_name, compare_func_info in relationships.items():
                 if name != compare_func_name:
@@ -27,6 +27,23 @@ def identify_relationships(functions):
                             info['related_functions'] = set()
                         # Establishing a relationship between functions
                         info['related_functions'].add(compare_func_name)
+
+            # Identify loose end parameters
+            for param in info['parameters']:
+                param = param.replace('_', ' ')
+                if param not in func_list:
+                    # Add loose end parameter to the relationship dictionary
+                    if 'param_loose_ends' not in info:
+                        info['param_loose_ends'] = set()
+                    info['param_loose_ends'].add(param)
+            # Identify loose end return statements
+            for returns in info['returns']:
+                returns = returns.replace('_', ' ')
+                if returns not in func_list:
+                    # Add loose end parameter to the relationship dictionary
+                    if 'returns_loose_ends' not in info:
+                        info['returns_loose_ends'] = set()
+                    info['returns_loose_ends'].add(param)
 
         return relationships
     except Exception as e:

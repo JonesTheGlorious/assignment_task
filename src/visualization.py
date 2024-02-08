@@ -27,10 +27,28 @@ def visualize_relationships(relationships, output_file):
             related_functions = info.get('related_functions', [])
             for related_function in related_functions:
                 G.add_edge(name, related_function)
+        
+        # Add external input node
+        G.add_node("External Input")
+
+        # Connect nodes with param_loose_ends to external input node
+        for name, info in relationships.items():
+            if 'param_loose_ends' in info:
+                G.add_edge("External Input", name)
+
+        # Add external output node
+        G.add_node("External Output")
+
+        # Connect nodes with returns_loose_ends to external output node
+        for name, info in relationships.items():
+            if 'returns_loose_ends' in info:
+                G.add_edge(name, "External Output")
 
         # Visualize the graph
         plt.figure(figsize=(10, 6))
         pos = nx.spring_layout(G, k=0.35, iterations=25)  # Layout algorithm
+        pos["External Input"] = (-1, 0)  # External input on the left
+        pos["External Output"] = (1, 0)  # External output on the right
         nx.draw(G, pos, with_labels=True, node_size=2000, node_color="skyblue", font_size=10, font_weight="bold")
         plt.title("Function Relationships Graph")
         plt.savefig(output_file)  # Save the plot as a PNG file with output_file name
