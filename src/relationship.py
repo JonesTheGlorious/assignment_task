@@ -43,7 +43,7 @@ def identify_relationships(functions):
                     # Add loose end parameter to the relationship dictionary
                     if 'returns_loose_ends' not in info:
                         info['returns_loose_ends'] = set()
-                    info['returns_loose_ends'].add(param)
+                    info['returns_loose_ends'].add(returns)
 
         return relationships
     except Exception as e:
