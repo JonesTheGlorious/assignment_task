@@ -6,9 +6,9 @@ from visualization import visualize_relationships
 
 def main():
     parser = argparse.ArgumentParser(description="Visualize relationships between functions in a Python file.")
-    parser.add_argument("file_path", nargs='?', default=os.path.join(os.path.abspath(os.getcwd()), "resources/elementary.py"), help="Path to the Python file")
-    parser.add_argument("--naming-convention", nargs='?', default="_", help="Naming convention pattern (default: _)")
-    parser.add_argument("output_file", nargs='?', default="function_relationships_graph.png", help="name of the resulting output file")
+    parser.add_argument("-file_path", nargs='?', default=os.path.join(os.path.abspath(os.getcwd()), "resources/elementary.py"), help="Path to the Python file")
+    parser.add_argument("-naming-convention", nargs='?', default="_", help="Naming convention pattern (default: _)")
+    parser.add_argument("-output_file", nargs='?', default="function_relationships_graph.png", help="name of the resulting output file")
 
     args = parser.parse_args()
 
