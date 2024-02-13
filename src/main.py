@@ -14,7 +14,7 @@ def main():
 
     try:
         extracted_functions = parse_python_file(args.file_path, args.naming_convention)
-        relationships = identify_relationships(extracted_functions)
+        relationships = identify_relationships(extracted_functions, args.naming_convention)
         visualize_relationships(relationships, args.output_file)
         print("Graph visualization saved as " + args.output_file)
     except Exception as e:

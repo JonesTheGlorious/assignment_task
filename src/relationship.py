@@ -1,9 +1,10 @@
-def identify_relationships(functions):
+def identify_relationships(functions, naming_convention):
     """
     Identifies relationships between functions based on shared parameters and return values.
 
     Args:
         functions (list): A list of tuples, each containing function name, parameters, and return values.
+        naming_convention (str): The naming convention used for function names.
 
     Returns:
         dict: A dictionary containing relationships between functions.
@@ -30,7 +31,7 @@ def identify_relationships(functions):
 
             # Identify loose end parameters
             for param in info['parameters']:
-                param = param.replace('_', ' ')
+                param = param.replace(naming_convention, ' ')
                 if param not in func_list:
                     # Add loose end parameter to the relationship dictionary
                     if 'param_loose_ends' not in info:
@@ -38,7 +39,7 @@ def identify_relationships(functions):
                     info['param_loose_ends'].add(param)
             # Identify loose end return statements
             for returns in info['returns']:
-                returns = returns.replace('_', ' ')
+                returns = returns.replace(naming_convention, ' ')
                 if returns not in func_list:
                     # Add loose end parameter to the relationship dictionary
                     if 'returns_loose_ends' not in info:
